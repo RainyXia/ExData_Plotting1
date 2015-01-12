@@ -1,0 +1,10 @@
+DT <- read.table("electricityPower.txt",head=TRUE,sep=";")
+Sys.setlocale(category = "LC_TIME", locale = "C")
+DT$Date <- as.Date(DT$Date,"%d/%m/%Y")
+DT$DateTime <- paste(DT$Date,DT$Time)
+DT$DateTime  <- as.POSIXct(DT$DateTime,format="%Y-%m-%d %H:%M:%S")
+hist(DT$Global_active_power,breaks=11,col="red",main="Global Active Power",
+     xlab="Global Active Power(kilowatts)")
+library(datasets)
+dev.copy(png, file = "plot1.png",width=480,height=480)
+dev.off()
