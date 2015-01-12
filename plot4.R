@@ -14,3 +14,6 @@ lines(DT$DateTime,DT$Sub_metering_3,col="blue")
 legend("topright",legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
        col=c("black","red","blue"),lty="solid")
 plot(DT$DateTime,DT$Global_reactive_power,type="l",ylab="Voltage",xlab="datetime")
+library(datasets)
+dev.copy(png, file = "plot4.png",width=480,height=480)
+dev.off()
