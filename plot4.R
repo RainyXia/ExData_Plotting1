@@ -1,0 +1,16 @@
+DT <- read.table("electricityPower.txt",head=TRUE,sep=";")
+Sys.setlocale(category = "LC_TIME", locale = "C")
+DT$Date <- as.Date(DT$Date,"%d/%m/%Y")
+DT$DateTime <- paste(DT$Date,DT$Time)
+DT$DateTime  <- as.POSIXct(DT$DateTime,format="%Y-%m-%d %H:%M:%S")
+par(mfrow=c(2,2))
+plot(DT$DateTime,DT$Global_active_power,type="l",
+     ylab="Global Active Power (kilowatts)",xlab="")
+plot(DT$DateTime,DT$Voltage,type="l",ylab="Voltage",xlab="datetime")
+plot(DT$DateTime,DT$Sub_metering_1,type="n",ylab="Energy sub metering",xlab="")
+lines(DT$DateTime,DT$Sub_metering_1,col="black")
+lines(DT$DateTime,DT$Sub_metering_2,col="red")
+lines(DT$DateTime,DT$Sub_metering_3,col="blue")
+legend("topright",legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
+       col=c("black","red","blue"),lty="solid")
+plot(DT$DateTime,DT$Global_reactive_power,type="l",ylab="Voltage",xlab="datetime")
